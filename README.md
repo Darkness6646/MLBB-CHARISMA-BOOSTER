@@ -33,7 +33,7 @@
         /* UI Overlay Box for UI Elements */
         .ui-container {
             position: relative;
-            z-index: 2;
+            z-index: 3;
             text-align: center;
         }
 
@@ -68,6 +68,31 @@
             animation: pulse 1s infinite;
         }
 
+        /* Centered Frame Image Container */
+        #frame-container {
+            position: relative;
+            z-index: 2; /* Keeps it above canvas but allows background to show */
+            display: none;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            
+            /* Cyber surveillance frame styling */
+            max-width: 80%;
+            max-height: 70%;
+            padding: 10px;
+            background: #000000;
+            border: 3px solid #00ff00;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.5);
+            border-radius: 4px;
+        }
+
+        #display-image {
+            max-width: 100%;
+            max-height: 65vh;
+            display: block;
+            object-fit: contain;
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -77,11 +102,17 @@
 </head>
 <body>
 
-    <!-- Matrix rain canvas -->
+    <!-- Matrix rain canvas background -->
     <canvas id="matrix"></canvas>
 
+    <!-- Centered Cyber Framed Image Box -->
+    <div id="frame-container">
+        <!-- CHANGE IMAGE HERE: Replace the link inside src="..." with your own public https:// image link -->
+        <img src="images.jpeg" alt="WORM VIRUS!">
+    </div>
+
     <!-- Main interactive interface -->
-    <div class="ui-container">
+    <div class="ui-container" id="ui-box">
         <button id="init-btn">INITIALIZE SYSTEM BYPASS</button>
         <div id="countdown">5</div>
     </div>
@@ -91,6 +122,8 @@
         const ctx = canvas.getContext('2d');
         const btn = document.getElementById('init-btn');
         const countdownEl = document.getElementById('countdown');
+        const uiBox = document.getElementById('ui-box');
+        const frameContainer = document.getElementById('frame-container');
 
         // Adjust canvas dimensions dynamically
         function resizeCanvas() {
@@ -129,13 +162,8 @@
 
         // Trigger sequencing when clicked
         btn.addEventListener('click', () => {
-            // Hide the initial action button
             btn.style.display = 'none';
-            
-            // Activate Matrix animation loop
             setInterval(drawMatrix, 33);
-
-            // Activate and display the 5-second countdown timer
             countdownEl.style.display = 'block';
             let timeLeft = 5;
 
@@ -146,14 +174,19 @@
                 } else {
                     clearInterval(timer);
                     countdownEl.textContent = "ACCESSING...";
-                    
-                    // Web safety feature constraint note: 
-                    // Browsers strictly block scripts from launching native desktop file apps (.exe or local folders) directly.
-                    // This uses a local file URL scheme to safely prompt the OS to open your default system storage view.
-                    window.location.href = "file:///";
+                    revealTargetFrame();
                 }
             }, 1000);
         });
+
+        // Handles loading image frame over active animation layer
+        function revealTargetFrame() {
+            uiBox.style.display = 'none';
+            frameContainer.style.display = 'block';
+            setTimeout(() => {
+                frameContainer.style.opacity = '1';
+            }, 50); 
+        }
     </script>
 </body>
 </html>
