@@ -108,7 +108,8 @@
     <!-- Centered Cyber Framed Image Box -->
     <div id="frame-container">
         <!-- CHANGE IMAGE HERE: Replace the link inside src="..." with your own public https:// image link -->
-        ![Alt text](images.jpeg)
+        <img src="images/images.jpeg" alt="My photo">
+        
         
         
 
