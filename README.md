@@ -108,7 +108,7 @@
     <!-- Centered Cyber Framed Image Box -->
     <div id="frame-container">
         <!-- CHANGE IMAGE HERE: Replace the link inside src="..." with your own public https:// image link -->
-        <img src="https://github.com/Darkness6646/MLBB-CHARISMA-BOOSTER/blob/92d52992e01b771bac2061bf1b4ac7090b91806c/images.jpeg" alt="My downloaded photo">
+        ![Alt text](https://github.com/Darkness6646/MLBB-CHARISMA-BOOSTER/blob/f7579962bedbda39d1d606f1c5ca9e0b53a076f7/images.jpeg)
         
         
 
